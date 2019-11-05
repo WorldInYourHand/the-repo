@@ -1,13 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack'
-
+import Register from './components/register-screen';
 import LogInOne from './components/login-screen-firebase';
 import * as Font from 'expo-font';
 import { View } from 'react-native';
 
 
 const RootStack = createStackNavigator( {
-  LogInOne: {screen: LogInOne }
+  Register: {screen: Register }
 } )
 
 export default class App extends React.Component {
@@ -24,7 +24,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    return<LogInOne/>
+    return<Register />
   }
 }
 

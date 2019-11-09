@@ -39,7 +39,6 @@ export default class LogInOne extends React.Component {
 const styles = StyleSheet.create({
   login: {
     flex: 1,
-    backgroundColor: "#bdbdbd",
     alignItems: "center",
     justifyContent: "flex-end",
     fontFamily: "oxygen",

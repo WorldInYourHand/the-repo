@@ -1,39 +1,51 @@
-import React, { Component } from "react";
+import React from "react";
 import {
-  TextInput,
   StyleSheet,
   View,
   Text,
-  ImageBackground
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform
 } from "react-native";
 import { CustomButton } from "./../components/Buttons";
 import { InputField } from "../components/InputFields";
 
 export default class Register extends React.Component {
   render() {
+    const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
+
     return (
       <ImageBackground
         source={require("./../assets/Photo_blurred.png")}
-        style={{ flex: 1, position: "relative", width: "100%", height: "100%" }}
+        style={{
+          flex: 1,
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          justifyContent: "flex-end"
+        }}
       >
-        <View style={styles.inputContainer}>
-          <Text style={styles.newAccount}>New Account</Text>
-          <InputField placeholder="User Name" secureTextEntry={false} />
-          <InputField placeholder="Email" secureTextEntry={false} />
-          <InputField placeholder="Password" secureTextEntry={true} />
-          <InputField
-            placeholder="Repeat password"
-            secureTextEntry={true}
-            style={{ marginBottom: 20 }}
-          />
+        <KeyboardAvoidingView
+          behavior="position"
+          keyboardVerticalOffset={keyboardVerticalOffset}
+          style={{ flex: 1, justifyContent: "flex-end" }}
+        >
+          <View style={styles.inputContainer}>
+            <Text style={styles.newAccount}>New Account</Text>
+            <InputField placeholder="User Name" secureTextEntry={false} />
+            <InputField placeholder="Email" secureTextEntry={false} />
+            <InputField placeholder="Password" secureTextEntry={true} />
+            <InputField
+              placeholder="Repeat password"
+              secureTextEntry={true}
+              style={{ marginBottom: 20 }}
+            />
+          </View>
+        </KeyboardAvoidingView>
+        <View style={styles.buttonView}>
           <CustomButton
             title="Sign Up"
             onPress={() => console.log(`sasdasd`)}
-            textStyle={
-              {
-                /* styles for button title */
-              }
-            }
           />
         </View>
       </ImageBackground>
@@ -46,11 +58,8 @@ const styles = StyleSheet.create({
   input: {
     borderBottomWidth: 1,
     borderBottomColor: "white",
-    shadowOffset: { width: 1, height: 2 },
-    shadowOpacity: 2,
     width: "70%",
     textAlign: "left",
-    alignSelf: "center",
     marginTop: 30,
     paddingLeft: 20,
     color: "white",
@@ -58,10 +67,8 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   inputContainer: {
-    flex: 1,
     justifyContent: "flex-end",
-    alignItems: "center",
-    marginVertical: 100
+    alignItems: "center"
   },
   newAccount: {
     fontSize: 20,
@@ -69,5 +76,11 @@ const styles = StyleSheet.create({
     alignContent: "center",
     fontFamily: "oxygen",
     marginBottom: 20
+  },
+  buttonView: {
+    //this is view for button only to prevent breacking the main view when keyboard pop
+    alignItems: "center",
+    alignContent: "center",
+    marginBottom: 100
   }
 });

@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, Button } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { CustomButton , RoundButton ,LinkButton } from '../components/Buttons';
+import tabNavigator from '../navigation/MainTabNavigator'
+// import { Navigator } from 'react-navigation'
 
 export default function LogInOne() {
 
@@ -14,7 +16,7 @@ export default function LogInOne() {
       </View>
       <Text style = {styles.line}> or</Text>
       <CustomButton title='LOGIN' onPress={() => console.log('iAA')}/>
-      <LinkButton title='create an account' style={styles.linkButton} onPress={() => console.log('Register')}/>
+      <LinkButton title='create an account' style={styles.linkButton}  onPress={() => tabNavigator}/>
       </ImageBackground>
   );
 }

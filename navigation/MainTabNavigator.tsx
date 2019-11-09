@@ -3,6 +3,8 @@ import { Platform } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import LogInOne from '../screens/login-screen-firebase';
 import { createStackNavigator } from 'react-navigation-stack';
+import Register from '../screens/register-screen';
+import { LinkButton } from '../components/Buttons';
 
 
 
@@ -14,22 +16,23 @@ const config = Platform.select({
 const LoginStack = createStackNavigator(
   {
     LoginScreen: LogInOne,
+    RefisterScreen: Register
   }
 );
 
-// HomeStack.navigationOptions = {
-//   tabBarLabel: 'Home',
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={
-//         Platform.OS === 'ios'
-//           ? `ios-information-circle${focused ? '' : '-outline'}`
-//           : 'md-information-circle'
-//       }
-//     />
-//   ),
-// };
+LoginStack.navigationOptions = {
+  tabBarLabel: 'Login',
+  tabBarIcon: ({ focused }) => (
+    <LinkButton
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
 
 LoginStack.path = '';
 
@@ -49,25 +52,24 @@ LoginStack.path = '';
 
 // LinksStack.path = '';
 
-// const SettingsStack = createStackNavigator(
-//   {
-//     Settings: SettingsScreen,
-//   },
-//   config
-// );
+const RegisterStack = createStackNavigator(
+  {
+    Settings: Register,
+  }
+);
 
-// SettingsStack.navigationOptions = {
-//   tabBarLabel: 'Settings',
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-//   ),
-// };
+RegisterStack.navigationOptions = {
+  tabBarLabel: 'Register',
+  tabBarIcon: ({ focused }) => (
+    <LinkButton focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+  ),
+};
 
 // SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
     LoginStack,
-//   LinksStack,
+    RegisterStack,
 //   SettingsStack,
 });
 

@@ -3,9 +3,21 @@ import { AppLoading } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 import * as Font from 'expo-font'
 
+import * as firebase from 'firebase';
+
 import { StyleSheet,View, Platform, StatusBar } from 'react-native';
 
 export default function App(props) {
+
+//   // Initialize Firebase
+// const firebaseConfig = {
+//   apiKey: "<AIzaSyAPTnxG-tU_m7Lq0yLtTZfxrKsMtpHHC0U>",
+//   authDomain: "<filtermap-fe228.firebaseapp.com>",
+//   databaseURL: "<https://filtermap-fe228.firebaseio.com>",
+//   storageBucket: "<filtermap-fe228.appspot.com>"
+// };
+
+// firebase.initializeApp(firebaseConfig);
 
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 

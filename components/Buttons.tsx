@@ -61,9 +61,9 @@ const styles = StyleSheet.create({
         color: 'gray',
     },
     round: {
-        width: 100,
-        height:100,
-        borderRadius:50
+        width: 80,
+        height:80,
+        borderRadius:40
     },
     linkButton: {
 

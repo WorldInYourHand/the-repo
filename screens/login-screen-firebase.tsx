@@ -26,19 +26,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#bdbdbd',
     alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily: 'oxygen'    
+    justifyContent: 'flex-end',
+    fontFamily: 'oxygen',
+    paddingBottom: 40    
   },
   line: {
     color: 'white',
     justifyContent: 'center',
     textAlign: 'center',
     fontSize: 20,
-    marginVertical: 60,
+    marginVertical: 40,
     fontFamily: 'oxygen'   
   },
   rowView: {
-    flexDirection: "row"
+    flexDirection: "row",
+    marginVertical: -20,
   },
   linkButton: {
     backgroundColor: "transparent",

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { AppLoading } from "expo";
-import AppNavigator from "./navigation/AppNavigator";
 import * as Font from "expo-font";
 import { StyleSheet, View, Platform, StatusBar } from "react-native";
-import { createAppContainer } from "react-navigation";
+import AuthNavigator from "./navigation/authNavigation";
 
 export default function App(props) {
-  const AppContainer = createAppContainer(AppNavigator);
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
@@ -21,7 +19,7 @@ export default function App(props) {
     return (
       <View style={styles.container}>
         {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-        <AppContainer />
+        <AuthNavigator />
       </View>
     );
   }
@@ -29,6 +27,7 @@ export default function App(props) {
 
 async function loadResourcesAsync() {
   await Promise.all([
+    // Asset.loadAsync([require("./assets/images/welcomeScreen.png")]),
     Font.loadAsync({
       oxygen: require("./assets/fonts/Oxygen-Regular.ttf")
     })

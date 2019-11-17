@@ -7,8 +7,8 @@ import {
   KeyboardAvoidingView,
   Platform
 } from "react-native";
-import { CustomButton } from "./../components/Buttons";
-import { InputField } from "../components/InputFields";
+import { InputField } from "../../components/inputs";
+import { BigButton } from "../../components/buttons";
 
 export default class Register extends React.Component {
   render() {
@@ -16,7 +16,7 @@ export default class Register extends React.Component {
 
     return (
       <ImageBackground
-        source={require("./../assets/Photo_blurred.png")}
+        source={require("../../assets/images/photo_blurred.png")}
         style={{
           flex: 1,
           position: "relative",
@@ -43,10 +43,7 @@ export default class Register extends React.Component {
           </View>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
-          <CustomButton
-            title="Sign Up"
-            onPress={() => console.log(`sasdasd`)}
-          />
+          <BigButton title="Sign Up" onPress={() => console.log(`sasdasd`)} />
         </View>
       </ImageBackground>
     );
@@ -54,24 +51,12 @@ export default class Register extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  registerView: {},
-  input: {
-    borderBottomWidth: 1,
-    borderBottomColor: "white",
-    width: "70%",
-    textAlign: "left",
-    marginTop: 30,
-    paddingLeft: 20,
-    color: "white",
-    //Should check how to calculate font size based on phone !!
-    fontSize: 20
-  },
   inputContainer: {
     justifyContent: "flex-end",
     alignItems: "center"
   },
   newAccount: {
-    fontSize: 20,
+    fontSize: 24,
     color: "white",
     alignContent: "center",
     fontFamily: "oxygen",
@@ -81,6 +66,6 @@ const styles = StyleSheet.create({
     //this is view for button only to prevent breacking the main view when keyboard pop
     alignItems: "center",
     alignContent: "center",
-    marginBottom: 100
+    marginBottom: 150
   }
 });

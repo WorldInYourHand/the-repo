@@ -1,35 +1,38 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
-import { CustomButton, RoundButton, LinkButton } from "../components/Buttons";
+import { BigButton, SocialButton, LinkButton } from "../../components/buttons";
 
-export default class LogInOne extends React.Component {
+export default class LoginWithSocial extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("../assets/images/Photo_blurred.png")}
+        source={require("../../assets/images/photo_blurred.png")}
         style={styles.login}
       >
-        <Text style={styles.line}> Sign in with</Text>
+        <Text style={styles.line}>Sign in with</Text>
         <View style={styles.rowView}>
-          <RoundButton
-            source={require("../assets/images/Facebook_button.png")}
-            onPress={() => console.log("FB")}
+          <SocialButton
+            source={require("../../assets/images/fb_button.png")}
+            onPress={() => this.props.navigation.navigate("HomeScreen")}
           />
-          <RoundButton
-            source={require("../assets/images/Twiter_button.png")}
+          <SocialButton
+            source={require("../../assets/images/tw_button.png")}
             onPress={() => console.log("twit")}
           />
-          <RoundButton
-            source={require("../assets/images/Google_Button.png")}
+          <SocialButton
+            source={require("../../assets/images/google_button.png")}
             onPress={() => console.log("google")}
           />
         </View>
-        <Text style={styles.line}> or </Text>
-        <CustomButton title="LOGIN" onPress={() => console.log("iAA")} />
+        <Text style={styles.line}>or</Text>
+        <BigButton
+          title="LOGIN"
+          onPress={() => this.props.navigation.navigate("LoginWithAcc")}
+        />
         <LinkButton
           title="create an account >"
           style={styles.linkButton}
-          onPress={() => this.props.navigation.navigate("Regitster")}
+          onPress={() => this.props.navigation.navigate("RegisterScreen")}
         />
       </ImageBackground>
     );
@@ -42,25 +45,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
     fontFamily: "oxygen",
-    paddingBottom: 40
+    paddingBottom: 150
   },
   line: {
     color: "white",
     justifyContent: "center",
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 24,
     marginVertical: 30,
     fontFamily: "oxygen"
   },
   rowView: {
     flexDirection: "row",
-    marginTop: -20
+    alignItems: "center"
   },
   linkButton: {
     backgroundColor: "transparent",
     borderWidth: 0,
     color: "white",
     fontFamily: "oxygen",
-    marginBottom: 20
+    marginBottom: 130
   }
 });

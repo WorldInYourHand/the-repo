@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { InputField } from "../../components/inputs";
 import { BigButton } from "../../components/buttons";
+import * as firebase from "firebase";
 
 export default class ForgotenPassword extends React.Component {
   constructor(props) {
@@ -64,7 +65,7 @@ export default class ForgotenPassword extends React.Component {
           </View>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
-          <BigButton title="Reset" onPress={() => console.log(`reset`)} />
+          <BigButton title="Reset" onPress={this.onResetPasswordPress} />
         </View>
       </ImageBackground>
     );

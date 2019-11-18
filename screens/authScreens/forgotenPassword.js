@@ -5,12 +5,33 @@ import {
   Text,
   ImageBackground,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  Alert
 } from "react-native";
 import { InputField } from "../../components/inputs";
 import { BigButton } from "../../components/buttons";
 
 export default class ForgotenPassword extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: ""
+    };
+  }
+
+  onResetPasswordPress = () => {
+    firebase
+      .auth()
+      .sendPasswordResetEmail(this.state.email)
+      .then(
+        () => {
+          Alert.alert("Password reset email has been sent.");
+        },
+        error => {
+          Alert.alert(error.message);
+        }
+      );
+  };
   render() {
     const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
 
@@ -32,7 +53,14 @@ export default class ForgotenPassword extends React.Component {
         >
           <View style={styles.inputContainer}>
             <Text style={styles.newAccount}>Password Reset</Text>
-            <InputField placeholder="Email" secureTextEntry={false} />
+            <InputField
+              value={this.state.email}
+              onChangeText={text => {
+                this.setState({ email: text });
+              }}
+              placeholder="Email"
+              secureTextEntry={false}
+            />
           </View>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>

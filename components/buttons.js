@@ -24,7 +24,7 @@ export const LinkButton = props => {
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <Text style={[styles.text, textStyle]}>{title}</Text>
+      <Text style={[styles.linkButton, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 };

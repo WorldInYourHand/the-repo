@@ -5,11 +5,12 @@ import {
   Text,
   ImageBackground,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  Alert
 } from "react-native";
 import { BigButton, LinkButton } from "../../components/buttons";
 import { InputField } from "../../components/inputs";
-import { RememberMeToggle } from "../../components/toggle";
+import * as firebase from "firebase";
 
 export default class LoginWithAcc extends React.Component {
   constructor(props) {
@@ -20,8 +21,17 @@ export default class LoginWithAcc extends React.Component {
     };
   }
 
-  onLoginPress = () => {};
-
+  onLoginPress = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(
+        () => {},
+        error => {
+          Alert.alert(error.message);
+        }
+      );
+  };
   onForgotPassPress = () => {
     this.props.navigation.navigate("ResetPassword");
   };
@@ -60,7 +70,6 @@ export default class LoginWithAcc extends React.Component {
           </View>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
-          <RememberMeToggle title="Remember me" />
           <BigButton title="Sign In" onPress={this.onLoginPress} />
           <LinkButton
             title="Forgoten password?"

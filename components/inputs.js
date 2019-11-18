@@ -10,7 +10,7 @@ export const InputField = props => {
       onChangeText={onChangeText}
       editable={true}
       style={[styles.input, style]}
-      maxLength={15}
+      maxLength={40}
       placeholder={placeholder}
       secureTextEntry={secureTextEntry}
     />

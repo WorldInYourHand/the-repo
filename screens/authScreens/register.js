@@ -5,16 +5,43 @@ import {
   Text,
   ImageBackground,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  Alert
 } from "react-native";
 import { InputField } from "../../components/inputs";
-import { BigButton , LinkButton } from "../../components/buttons";
+import { BigButton, LinkButton } from "../../components/buttons";
+import * as firebase from "firebase";
 
 export default class Register extends React.Component {
-
-  onReturnToLoginPress =() => {
-    this.props.navigation.navigate("LoginWithAcc")
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      email: "",
+      password: "",
+      passwordConfirm: ""
+    };
   }
+  onSignUpPress = () => {
+    if (this.state.password !== this.state.passwordConfirm) {
+      Alert.alert("Passwords do not match");
+      return;
+    }
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(
+        () => {},
+        error => {
+          Alert.alert(error.message);
+        }
+      );
+  };
+
+  onReturnToLoginPress = () => {
+    this.props.navigation.navigate("LoginWithAcc");
+  };
 
   render() {
     const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
@@ -37,10 +64,35 @@ export default class Register extends React.Component {
         >
           <View style={styles.inputContainer}>
             <Text style={styles.newAccount}>New Account</Text>
-            <InputField placeholder="User Name" secureTextEntry={false} />
-            <InputField placeholder="Email" secureTextEntry={false} />
-            <InputField placeholder="Password" secureTextEntry={true} />
             <InputField
+              value={this.state.username}
+              onChangeText={text => {
+                this.setState({ username: text });
+              }}
+              placeholder="User Name"
+              secureTextEntry={false}
+            />
+            <InputField
+              value={this.state.email}
+              onChangeText={text => {
+                this.setState({ email: text });
+              }}
+              placeholder="Email"
+              secureTextEntry={false}
+            />
+            <InputField
+              value={this.state.password}
+              onChangeText={text => {
+                this.setState({ password: text });
+              }}
+              placeholder="Password"
+              secureTextEntry={true}
+            />
+            <InputField
+              value={this.state.passwordConfirm}
+              onChangeText={text => {
+                this.setState({ passwordConfirm: text });
+              }}
               placeholder="Repeat password"
               secureTextEntry={true}
               style={{ marginBottom: 20 }}
@@ -48,8 +100,11 @@ export default class Register extends React.Component {
           </View>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
-          <BigButton title="Sign Up" onPress={() => console.log(`sasdasd`)} />
-          <LinkButton title="I have an account" onPress={this.onReturnToLoginPress}/>
+          <BigButton title="Sign Up" onPress={this.onSignUpPress} />
+          <LinkButton
+            title="I have an account"
+            onPress={this.onReturnToLoginPress}
+          />
         </View>
       </ImageBackground>
     );

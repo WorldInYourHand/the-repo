@@ -1,18 +1,18 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import LoginWithSocial from "../screens/authScreens/loginWithSocial";
+import Settings from "../screens/mainScreens/HomeScreen";
 
 const MainTabNavigator = createStackNavigator(
   {
-    LoginWithSocial: {
-      screen: LoginWithSocial,
+    Settings: {
+      screen: Settings,
       navigationOptions: {
         header: null
       }
     }
   },
   {
-    initialRouteName: "LoginWithSocial"
+    initialRouteName: "Settings"
   }
 );
 

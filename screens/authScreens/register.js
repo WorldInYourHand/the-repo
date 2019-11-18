@@ -8,9 +8,14 @@ import {
   Platform
 } from "react-native";
 import { InputField } from "../../components/inputs";
-import { BigButton } from "../../components/buttons";
+import { BigButton , LinkButton } from "../../components/buttons";
 
 export default class Register extends React.Component {
+
+  onReturnToLoginPress =() => {
+    this.props.navigation.navigate("LoginWithAcc")
+  }
+
   render() {
     const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
 
@@ -44,6 +49,7 @@ export default class Register extends React.Component {
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
           <BigButton title="Sign Up" onPress={() => console.log(`sasdasd`)} />
+          <LinkButton title="I have an account" onPress={this.onReturnToLoginPress}/>
         </View>
       </ImageBackground>
     );

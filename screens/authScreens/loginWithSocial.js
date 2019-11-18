@@ -3,6 +3,11 @@ import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { BigButton, SocialButton, LinkButton } from "../../components/buttons";
 
 export default class LoginWithSocial extends React.Component {
+
+  onRegisterPress =() => {
+    this.props.navigation.navigate("RegisterScreen")
+  }
+  
   render() {
     return (
       <ImageBackground
@@ -32,7 +37,7 @@ export default class LoginWithSocial extends React.Component {
         <LinkButton
           title="create an account >"
           style={styles.linkButton}
-          onPress={() => this.props.navigation.navigate("RegisterScreen")}
+          onPress={this.onRegisterPress}
         />
       </ImageBackground>
     );

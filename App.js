@@ -1,46 +1,74 @@
-import React, { useState } from "react";
+import React from "react";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import { StyleSheet, View, Platform, StatusBar } from "react-native";
 import AuthNavigator from "./navigation/authNavigation";
+import MainTabNavigator from "./navigation/mainNavigation";
+import * as firebase from "firebase";
+import ApiKeys from "./constants/ApiKeys";
 
-export default function App(props) {
-  const [isLoadingComplete, setLoadingComplete] = useState(false);
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoadingComplete: false,
+      isAuthenticationLoaded: true,
+      isAuthenticated: false
+    };
 
-  if (!isLoadingComplete && !props.skipLoadingScreen) {
-    return (
-      <AppLoading
-        startAsync={loadResourcesAsync}
-        onError={handleLoadingError}
-        onFinish={() => handleFinishLoading(setLoadingComplete)}
-      />
-    );
-  } else {
-    return (
-      <View style={styles.container}>
-        {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-        <AuthNavigator />
-      </View>
-    );
+    if (!firebase.apps.length) {
+      firebase.initializeApp(ApiKeys.FirebaseConfig);
+    }
+    firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
+  }
+  onAuthStateChanged = user => {
+    this.setState({ isAuthenticationLoaded: true });
+    this.setState({ isAuthenticated: !!user });
+  };
+
+  render() {
+    if (
+      (!this.state.isLoadingComplete || !this.state.isAuthenticationLoaded) &&
+      !this.props.skipLoadingScreen
+    ) {
+      return (
+        <AppLoading
+          startAsync={this._loadResourcesAsync}
+          onError={this._handleLoadingError}
+          onFinish={this._handleFinishLoading}
+        />
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+          {this.state.isAuthenticated ? (
+            <MainTabNavigator />
+          ) : (
+            <AuthNavigator />
+          )}
+        </View>
+      );
+    }
   }
 }
 
-async function loadResourcesAsync() {
-  await Promise.all([
+_loadResourcesAsync = async () => {
+  return Promise.all([
     // Asset.loadAsync([require("./assets/images/welcomeScreen.png")]),
-    Font.loadAsync({
-      oxygen: require("./assets/fonts/Oxygen-Regular.ttf")
-    })
+    // Font.loadAsync({
+    //   oxygen: require("./assets/fonts/Oxygen-Regular.ttf")
+    // })
   ]);
-}
+};
 
-function handleLoadingError(error) {
+_handleLoadingError = error => {
   console.warn(error);
-}
+};
 
-function handleFinishLoading(setLoadingComplete) {
-  setLoadingComplete(true);
-}
+_handleFinishLoading = () => {
+  setState({ isLoadingComplete: true });
+};
 
 const styles = StyleSheet.create({
   container: {

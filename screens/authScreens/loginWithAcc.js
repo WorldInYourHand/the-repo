@@ -12,9 +12,22 @@ import { InputField } from "../../components/inputs";
 import { RememberMeToggle } from "../../components/toggle";
 
 export default class LoginWithAcc extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
+
+  onLoginPress = () => {};
+
+  onForgotPassPress = () => {
+    this.props.navigation.navigate("ResetPassword");
+  };
+
   render() {
     const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
-
     return (
       <ImageBackground
         source={require("../../assets/images/photo_blurred.png")}
@@ -28,12 +41,18 @@ export default class LoginWithAcc extends React.Component {
           <View style={styles.inputContainer}>
             <Text style={styles.newAccount}>Sign In</Text>
             <InputField
-              onChangeText={email => this.setState({ email })}
+              value={this.state.email}
+              onChangeText={text => {
+                this.setState({ email: text });
+              }}
               placeholder="Email"
               secureTextEntry={false}
             />
             <InputField
-              onChangeText={password => this.setState({ password })}
+              value={this.state.password}
+              onChangeText={text => {
+                this.setState({ password: text });
+              }}
               placeholder="Password"
               secureTextEntry={true}
               style={{ marginBottom: 20 }}
@@ -42,13 +61,10 @@ export default class LoginWithAcc extends React.Component {
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
           <RememberMeToggle title="Remember me" />
-          <BigButton
-            title="Sign In"
-            // onPress={() => console.log(this.state.email, this.state.password)}
-          />
+          <BigButton title="Sign In" onPress={this.onLoginPress} />
           <LinkButton
             title="Forgoten password?"
-            onPress={() => this.props.navigation.navigate("ResetPassword")}
+            onPress={this.onForgotPassPress}
           />
         </View>
       </ImageBackground>

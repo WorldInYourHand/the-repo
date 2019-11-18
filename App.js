@@ -26,6 +26,23 @@ export default class App extends React.Component {
     this.setState({ isAuthenticated: !!user });
   };
 
+  loadResourcesAsync = async () => {
+    return Promise.all([
+      // Asset.loadAsync([require("./assets/images/welcomeScreen.png")]),
+      Font.loadAsync({
+        oxygen: require("./assets/fonts/Oxygen-Regular.ttf")
+      })
+    ]);
+  };
+
+  handleLoadingError = error => {
+    console.warn(error);
+  };
+
+  handleFinishLoading = () => {
+    this.setState({ isLoadingComplete: true });
+  };
+
   render() {
     if (
       (!this.state.isLoadingComplete || !this.state.isAuthenticationLoaded) &&
@@ -33,9 +50,9 @@ export default class App extends React.Component {
     ) {
       return (
         <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
+          startAsync={this.loadResourcesAsync}
+          onError={this.handleLoadingError}
+          onFinish={this.handleFinishLoading}
         />
       );
     } else {
@@ -52,23 +69,6 @@ export default class App extends React.Component {
     }
   }
 }
-
-_loadResourcesAsync = async () => {
-  return Promise.all([
-    // Asset.loadAsync([require("./assets/images/welcomeScreen.png")]),
-    // Font.loadAsync({
-    //   oxygen: require("./assets/fonts/Oxygen-Regular.ttf")
-    // })
-  ]);
-};
-
-_handleLoadingError = error => {
-  console.warn(error);
-};
-
-_handleFinishLoading = () => {
-  setState({ isLoadingComplete: true });
-};
 
 const styles = StyleSheet.create({
   container: {

@@ -5,7 +5,6 @@ import LoginWithAcc from "../screens/authScreens/loginWithAcc";
 import Register from "../screens/authScreens/register";
 import ForgotenPassword from "../screens/authScreens/forgotenPassword";
 
-
 const AuthNavigator = createStackNavigator(
   {
     LoginWithSocial: {

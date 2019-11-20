@@ -21,6 +21,10 @@ export default class LoginWithAcc extends React.Component {
     };
   }
 
+  goBack = () => {
+    this.props.navigation.navigate("LoginWithSocial");
+  };
+
   onLoginPress = () => {
     firebase
       .auth()
@@ -75,6 +79,7 @@ export default class LoginWithAcc extends React.Component {
             title="Forgoten password?"
             onPress={this.onForgotPassPress}
           />
+          <LinkButton title="< back" onPress={this.goBack} />
         </View>
       </ImageBackground>
     );
@@ -112,7 +117,6 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   buttonView: {
-    //this is view for button only to prevent breacking the main view when keyboard pop
     alignItems: "center",
     alignContent: "center",
     marginBottom: 150

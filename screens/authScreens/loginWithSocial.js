@@ -3,11 +3,17 @@ import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { BigButton, SocialButton, LinkButton } from "../../components/buttons";
 
 export default class LoginWithSocial extends React.Component {
-
-  onRegisterPress =() => {
-    this.props.navigation.navigate("RegisterScreen")
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalVisible: false
+    };
   }
-  
+
+  onRegisterPress = () => {
+    this.props.navigation.navigate("RegisterScreen");
+  };
+
   render() {
     return (
       <ImageBackground
@@ -18,7 +24,7 @@ export default class LoginWithSocial extends React.Component {
         <View style={styles.rowView}>
           <SocialButton
             source={require("../../assets/images/fb_button.png")}
-            onPress={() => this.props.navigation.navigate("HomeScreen")}
+            onPress={() => console.log("fb")}
           />
           <SocialButton
             source={require("../../assets/images/tw_button.png")}

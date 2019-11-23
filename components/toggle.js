@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
   rememberMeText: {
     fontSize: 20,
     marginLeft: 10,
-    color: "#4a4a4a"
+    color: "white"
   }
 });

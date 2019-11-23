@@ -1,19 +1,29 @@
 import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import LoginWithSocial from "../screens/authScreens/loginWithSocial";
+import Home from "../screens/mainScreens/HomeScreen";
+import Explore from "../screens/mainScreens/ExploreScreen";
+import Travel from "../screens/mainScreens/TravelScreen";
+import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 
-const MainTabNavigator = createStackNavigator(
+const MainTopNavigaion = createMaterialTopTabNavigator(
   {
-    LoginWithSocial: {
-      screen: LoginWithSocial,
-      navigationOptions: {
-        header: null
-      }
-    }
+    Home: Home,
+    Explore: Explore,
+    Travel: Travel
   },
   {
-    initialRouteName: "LoginWithSocial"
+    tabBarOptions: {
+      labelStyle: {
+        fontSize: 16,
+        paddingTop: 40
+      },
+      tabStyle: {
+        height: 80
+      },
+      style: {
+        backgroundColor: "gray"
+      }
+    }
   }
 );
 
-export default createAppContainer(MainTabNavigator);
+export default createAppContainer(MainTopNavigaion);

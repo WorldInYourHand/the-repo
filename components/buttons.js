@@ -24,6 +24,24 @@ export const LinkButton = props => {
 
   return (
     <TouchableOpacity onPress={onPress}>
+      <Text style={[styles.linkButton, textStyle]}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
+
+export const BackButton = props => {
+  const { style = {}, onPress = {}, source = {} } = props;
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Image style={[styles.backButton, style]} source={source} />
+    </TouchableOpacity>
+  );
+};
+
+export const ModalButton = props => {
+  const { title = "OK", style = {}, textStyle = {}, onPress } = props;
+  return (
+    <TouchableOpacity onPress={onPress} style={[styles.bigButton, style]}>
       <Text style={[styles.text, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
@@ -53,5 +71,18 @@ const styles = StyleSheet.create({
   linkButton: {
     color: "white",
     fontSize: 20
+  },
+  cofirmButton: {
+    backgroundColor: "blue",
+    alignItems: "center",
+    color: "white",
+    fontSize: 20
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginLeft: 20,
+    marginBottom: 20
   }
 });

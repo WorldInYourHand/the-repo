@@ -5,23 +5,39 @@ import {
   Text,
   ImageBackground,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  Alert
 } from "react-native";
-import { BigButton, LinkButton } from "../../components/buttons";
+import { BigButton, LinkButton, BackButton } from "../../components/buttons";
 import { InputField } from "../../components/inputs";
-import { RememberMeToggle } from "../../components/toggle";
+import * as firebase from "firebase";
 
 export default class LoginWithAcc extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      isModalVisible: false,
+      modalText: "error"
     };
   }
 
-  onLoginPress = () => {};
+  goBack = () => {
+    this.props.navigation.navigate("LoginWithSocial");
+  };
 
+  onLoginPress = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(
+        () => {},
+        error => {
+          Alert.alert(error.message);
+        }
+      );
+  };
   onForgotPassPress = () => {
     this.props.navigation.navigate("ResetPassword");
   };
@@ -57,16 +73,19 @@ export default class LoginWithAcc extends React.Component {
               secureTextEntry={true}
               style={{ marginBottom: 20 }}
             />
+            <BigButton title="Sign In" onPress={this.onLoginPress} />
           </View>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
-          <RememberMeToggle title="Remember me" />
-          <BigButton title="Sign In" onPress={this.onLoginPress} />
           <LinkButton
             title="Forgoten password?"
             onPress={this.onForgotPassPress}
           />
         </View>
+        <BackButton
+          source={require("../../assets/images/back_button.png")}
+          onPress={this.goBack}
+        />
       </ImageBackground>
     );
   }
@@ -103,7 +122,6 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   buttonView: {
-    //this is view for button only to prevent breacking the main view when keyboard pop
     alignItems: "center",
     alignContent: "center",
     marginBottom: 150

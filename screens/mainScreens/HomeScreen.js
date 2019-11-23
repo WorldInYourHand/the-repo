@@ -25,6 +25,7 @@ export default class Home extends React.Component {
       >
         <Text>HOME SCREEN</Text>
         <Text>logged as {firebase.auth().currentUser.email}</Text>
+        <Button title="Sign out" onPress={this.onSignoutPress} />
       </ScrollView>
     );
   }

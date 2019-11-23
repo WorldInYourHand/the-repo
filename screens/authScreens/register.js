@@ -1,15 +1,16 @@
 import React from "react";
 import {
   StyleSheet,
-  View,
+  SafeAreaView,
   Text,
   ImageBackground,
   KeyboardAvoidingView,
   Platform,
-  Alert
+  Alert,
+  View
 } from "react-native";
 import { InputField } from "../../components/inputs";
-import { BigButton, LinkButton } from "../../components/buttons";
+import { BigButton, LinkButton, BackButton } from "../../components/buttons";
 import * as firebase from "firebase";
 
 export default class Register extends React.Component {
@@ -22,6 +23,11 @@ export default class Register extends React.Component {
       passwordConfirm: ""
     };
   }
+
+  goBack = () => {
+    this.props.navigation.navigate("LoginWithSocial");
+  };
+
   onSignUpPress = () => {
     if (this.state.password !== this.state.passwordConfirm) {
       Alert.alert("Passwords do not match");
@@ -62,7 +68,7 @@ export default class Register extends React.Component {
           keyboardVerticalOffset={keyboardVerticalOffset}
           style={{ flex: 1, justifyContent: "flex-end" }}
         >
-          <View style={styles.inputContainer}>
+          <SafeAreaView style={styles.inputContainer}>
             <Text style={styles.newAccount}>New Account</Text>
             <InputField
               value={this.state.username}
@@ -97,15 +103,19 @@ export default class Register extends React.Component {
               secureTextEntry={true}
               style={{ marginBottom: 20 }}
             />
-          </View>
+            <BigButton title="Sign Up" onPress={this.onSignUpPress} />
+          </SafeAreaView>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
-          <BigButton title="Sign Up" onPress={this.onSignUpPress} />
           <LinkButton
             title="I have an account"
             onPress={this.onReturnToLoginPress}
           />
         </View>
+        <BackButton
+          source={require("../../assets/images/back_button.png")}
+          onPress={this.goBack}
+        />
       </ImageBackground>
     );
   }

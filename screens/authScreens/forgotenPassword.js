@@ -9,7 +9,7 @@ import {
   Alert
 } from "react-native";
 import { InputField } from "../../components/inputs";
-import { BigButton, LinkButton } from "../../components/buttons";
+import { BigButton, BackButton } from "../../components/buttons";
 import * as firebase from "firebase";
 
 export default class ForgotenPassword extends React.Component {
@@ -70,8 +70,11 @@ export default class ForgotenPassword extends React.Component {
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
           <BigButton title="Reset" onPress={this.onResetPasswordPress} />
-          <LinkButton title="< back" onPress={this.goBack} />
         </View>
+        <BackButton
+          source={require("../../assets/images/back_button.png")}
+          onPress={this.goBack}
+        />
       </ImageBackground>
     );
   }

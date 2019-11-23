@@ -2,10 +2,14 @@ import React from "react";
 import { ScrollView, StyleSheet, Button, Text } from "react-native";
 import * as firebase from "firebase";
 
-export default class Home extends React.Component {
+export default class Travel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentPassword: "",
+      newPassword: "",
+      newEmail: ""
+    };
   }
 
   // Occurs when signout is pressed...
@@ -23,7 +27,7 @@ export default class Home extends React.Component {
           paddingHorizontal: 10
         }}
       >
-        <Text>HOME SCREEN</Text>
+        <Text>TRAVEL SCREEN</Text>
         <Text>logged as {firebase.auth().currentUser.email}</Text>
       </ScrollView>
     );

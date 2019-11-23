@@ -1,19 +1,29 @@
 import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import Settings from "../screens/mainScreens/HomeScreen";
+import Home from "../screens/mainScreens/HomeScreen";
+import Explore from "../screens/mainScreens/ExploreScreen";
+import Travel from "../screens/mainScreens/TravelScreen";
+import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 
-const MainTabNavigator = createStackNavigator(
+const MainTopNavigaion = createMaterialTopTabNavigator(
   {
-    Settings: {
-      screen: Settings,
-      navigationOptions: {
-        header: null
-      }
-    }
+    Home: Home,
+    Explore: Explore,
+    Travel: Travel
   },
   {
-    initialRouteName: "Settings"
+    tabBarOptions: {
+      labelStyle: {
+        fontSize: 16,
+        paddingTop: 40
+      },
+      tabStyle: {
+        height: 80
+      },
+      style: {
+        backgroundColor: "gray"
+      }
+    }
   }
 );
 
-export default createAppContainer(MainTabNavigator);
+export default createAppContainer(MainTopNavigaion);

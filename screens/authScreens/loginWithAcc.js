@@ -8,7 +8,7 @@ import {
   Platform,
   Alert
 } from "react-native";
-import { BigButton, LinkButton } from "../../components/buttons";
+import { BigButton, LinkButton, BackButton } from "../../components/buttons";
 import { InputField } from "../../components/inputs";
 import * as firebase from "firebase";
 
@@ -17,7 +17,9 @@ export default class LoginWithAcc extends React.Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      isModalVisible: false,
+      modalText: "error"
     };
   }
 
@@ -71,16 +73,19 @@ export default class LoginWithAcc extends React.Component {
               secureTextEntry={true}
               style={{ marginBottom: 20 }}
             />
+            <BigButton title="Sign In" onPress={this.onLoginPress} />
           </View>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
-          <BigButton title="Sign In" onPress={this.onLoginPress} />
           <LinkButton
             title="Forgoten password?"
             onPress={this.onForgotPassPress}
           />
-          <LinkButton title="< back" onPress={this.goBack} />
         </View>
+        <BackButton
+          source={require("../../assets/images/back_button.png")}
+          onPress={this.goBack}
+        />
       </ImageBackground>
     );
   }

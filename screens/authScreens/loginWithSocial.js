@@ -1,62 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { BigButton, SocialButton, LinkButton } from "../../components/buttons";
-import * as firebase from "firebase";
 
 export default class LoginWithSocial extends React.Component {
-  // isUserEqual = (googleUser, firebaseUser) => {
-  //   if (firebaseUser) {
-  //     var providerData = firebaseUser.providerData;
-  //     for (var i = 0; i < providerData.length; i++) {
-  //       if (
-  //         providerData[i].providerId ===
-  //           firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-  //         providerData[i].uid === googleUser.getBasicProfile().getId()
-  //       ) {
-  //         // We don't need to reauth the Firebase connection.
-  //         return true;
-  //       }
-  //     }
-  //   }
-  //   return false;
-  // };
-
-  // onSignIn = googleUser => {
-  //   console.log("Google Auth Response", googleUser);
-  //   // We need to register an Observer on Firebase Auth to make sure auth is initialized.
-  //   var unsubscribe = firebase
-  //     .auth()
-  //     .onAuthStateChanged(function(firebaseUser) {
-  //       unsubscribe();
-  //       // Check if we are already signed-in Firebase with the correct user.
-  //       if (!isUserEqual(googleUser, firebaseUser)) {
-  //         // Build Firebase credential with the Google ID token.
-  //         var credential = firebase.auth.GoogleAuthProvider.credential(
-  //           googleUser.idToken,
-  //           googleUser.acessToken
-  //         );
-  //         // Sign in with credential from the Google user.
-  //         firebase
-  //           .auth()
-  //           .signInWithCredential(credential)
-  //           .then(function() {
-  //             console.log("user signed in");
-  //           })
-  //           .catch(function(error) {
-  //             // Handle Errors here.
-  //             var errorCode = error.code;
-  //             var errorMessage = error.message;
-  //             // The email of the user's account used.
-  //             var email = error.email;
-  //             // The firebase.auth.AuthCredential type that was used.
-  //             var credential = error.credential;
-  //             // ...
-  //           });
-  //       } else {
-  //         console.log("User already signed-in Firebase.");
-  //       }
-  //     });
-  // };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalVisible: false
+    };
+  }
 
   onRegisterPress = () => {
     this.props.navigation.navigate("RegisterScreen");

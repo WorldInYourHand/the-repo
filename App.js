@@ -1,7 +1,13 @@
 import React from "react";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
-import { StyleSheet, View, Platform, StatusBar } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Platform,
+  StatusBar,
+  SafeAreaView
+} from "react-native";
 import AuthNavigator from "./navigation/authNavigation";
 import MainTabNavigator from "./navigation/mainNavigation";
 import * as firebase from "firebase";
@@ -62,7 +68,9 @@ export default class App extends React.Component {
           {this.state.isAuthenticated ? (
             <MainTabNavigator />
           ) : (
-            <AuthNavigator />
+            <SafeAreaView>
+              <AuthNavigator />
+            </SafeAreaView>
           )}
         </View>
       );

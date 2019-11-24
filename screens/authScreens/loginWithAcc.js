@@ -11,6 +11,7 @@ import {
 import { BigButton, LinkButton, BackButton } from "../../components/buttons";
 import { InputField } from "../../components/inputs";
 import * as firebase from "firebase";
+import * as colors from "../../constants/Colors";
 
 export default class LoginWithAcc extends React.Component {
   constructor(props) {
@@ -101,12 +102,12 @@ const styles = StyleSheet.create({
   },
   input: {
     borderBottomWidth: 1,
-    borderBottomColor: "white",
+    borderBottomColor: colors.default.buttonWhite,
     width: "70%",
     textAlign: "left",
     marginTop: 30,
     paddingLeft: 20,
-    color: "white",
+    color: colors.default.buttonWhite,
     //Should check how to calculate font size based on phone !!
     fontSize: 20
   },
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
   },
   newAccount: {
     fontSize: 24,
-    color: "white",
+    color: colors.default.buttonWhite,
     alignContent: "center",
     fontFamily: "oxygen",
     marginBottom: 20

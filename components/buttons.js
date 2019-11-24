@@ -1,5 +1,6 @@
 import * as React from "react";
 import { TouchableOpacity, StyleSheet, Text, Image } from "react-native";
+import * as colors from "../constants/Colors";
 
 export const BigButton = props => {
   const { title = "Login", style = {}, textStyle = {}, onPress } = props;
@@ -56,12 +57,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 20,
-    backgroundColor: "white"
+    backgroundColor: colors.default.buttonWhite
   },
   text: {
     fontSize: 16,
     textTransform: "uppercase",
-    color: "#4a4a4a"
+    color: colors.default.darkGray
   },
   socialButton: {
     width: 90,
@@ -69,13 +70,13 @@ const styles = StyleSheet.create({
     borderRadius: 45
   },
   linkButton: {
-    color: "white",
+    color: colors.default.lightGray,
     fontSize: 20
   },
   cofirmButton: {
-    backgroundColor: "blue",
+    backgroundColor: colors.default.blue,
     alignItems: "center",
-    color: "white",
+    color: colors.default.buttonWhite,
     fontSize: 20
   },
   backButton: {

@@ -56,7 +56,7 @@ export default class Home extends React.Component {
           flexDirection: "column",
           paddingTop: 85,
           paddingHorizontal: 10,
-          backgroundColor: "gray"
+          backgroundColor: colors.default.lightGray
         }}
       >
         <Text style={styles.text}>HOME SCREEN</Text>
@@ -86,7 +86,7 @@ export default class Home extends React.Component {
 
 const styles = StyleSheet.create({
   text: {
-    color: colors.default.errorBackground,
+    color: colors.default.blue,
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 20,
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderWidth: 1,
-    borderColor: "gray",
+    borderColor: colors.default.darkGray,
     marginVertical: 20,
     padding: 10,
     height: 40,

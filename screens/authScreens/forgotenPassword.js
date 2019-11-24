@@ -11,6 +11,7 @@ import {
 import { InputField } from "../../components/inputs";
 import { BigButton, BackButton } from "../../components/buttons";
 import * as firebase from "firebase";
+import * as colors from "../../constants/Colors";
 
 export default class ForgotenPassword extends React.Component {
   constructor(props) {
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
   },
   newAccount: {
     fontSize: 24,
-    color: "white",
+    color: colors.default.buttonWhite,
     alignContent: "center",
     fontFamily: "oxygen",
     marginBottom: 20

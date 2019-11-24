@@ -13,6 +13,7 @@ export const InputField = props => {
       style={[styles.input, style]}
       maxLength={40}
       placeholder={placeholder}
+      placeholderTextColor={colors.default.lightGray}
       secureTextEntry={secureTextEntry}
     />
   );
@@ -21,7 +22,7 @@ export const InputField = props => {
 const styles = StyleSheet.create({
   input: {
     borderBottomWidth: 1,
-    borderBottomColor: colors.default.buttonWhite,
+    borderBottomColor: colors.default.lightGray,
     width: "75%",
     textAlign: "left",
     alignSelf: "center",

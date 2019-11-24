@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ImageBackground,
-  Dimensions
-} from "react-native";
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { BigButton, SocialButton, LinkButton } from "../../components/buttons";
 import * as colors from "../../constants/Colors";
 
@@ -16,8 +10,6 @@ export default class LoginWithSocial extends React.Component {
       isModalVisible: false
     };
   }
-
-  height = Dimensions.get("window");
 
   onRegisterPress = () => {
     this.props.navigation.navigate("RegisterScreen");

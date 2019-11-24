@@ -19,8 +19,21 @@ const MainTopNavigaion = createMaterialTopTabNavigator(
       tabStyle: {
         height: 80
       },
+      activeTintColor: "#333",
       style: {
-        backgroundColor: "gray"
+        backgroundColor: "gray",
+        borderBottomEndRadius: 15,
+        borderBottomLeftRadius: 15,
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%"
+      },
+      indicatorStyle: {
+        backgroundColor: "blue",
+        top: 82,
+        width: "20%",
+        marginHorizontal: "4%"
       }
     }
   }

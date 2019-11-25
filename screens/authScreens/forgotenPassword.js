@@ -44,18 +44,12 @@ export default class ForgotenPassword extends React.Component {
     return (
       <ImageBackground
         source={require("../../assets/images/photo_blurred.png")}
-        style={{
-          flex: 1,
-          position: "relative",
-          width: "100%",
-          height: "100%",
-          justifyContent: "flex-end"
-        }}
+        style={styles.imageContainer}
       >
         <KeyboardAvoidingView
           behavior="position"
           keyboardVerticalOffset={keyboardVerticalOffset}
-          style={{ flex: 1, justifyContent: "flex-end" }}
+          style={{ flex: 3, justifyContent: "flex-end" }}
         >
           <View style={styles.inputContainer}>
             <Text style={styles.newAccount}>Password Reset</Text>
@@ -82,6 +76,10 @@ export default class ForgotenPassword extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  imageContainer: {
+    flex: 1,
+    justifyContent: "flex-end"
+  },
   inputContainer: {
     justifyContent: "flex-end",
     alignItems: "center"
@@ -94,9 +92,9 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   buttonView: {
-    //this is view for button only to prevent breacking the main view when keyboard pop
+    flex: 2,
+    justifyContent: "center",
     alignItems: "center",
-    alignContent: "center",
-    marginBottom: 150
+    alignContent: "center"
   }
 });

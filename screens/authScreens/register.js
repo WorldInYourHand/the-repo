@@ -61,7 +61,7 @@ export default class Register extends React.Component {
         <KeyboardAvoidingView
           behavior="position"
           keyboardVerticalOffset={keyboardVerticalOffset}
-          style={{ flex: 1, justifyContent: "flex-end" }}
+          style={{ flex: 3, justifyContent: "flex-end" }}
         >
           <SafeAreaView style={styles.inputContainer}>
             <Text style={styles.newAccount}>New Account</Text>
@@ -98,10 +98,10 @@ export default class Register extends React.Component {
               secureTextEntry={true}
               style={{ marginBottom: 20 }}
             />
-            <BigButton title="Sign Up" onPress={this.onSignUpPress} />
           </SafeAreaView>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
+          <BigButton title="Sign Up" onPress={this.onSignUpPress} />
           <LinkButton
             title="I have an account"
             onPress={this.onReturnToLoginPress}
@@ -125,20 +125,16 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: colors.default.buttonWhite,
     alignContent: "center",
-    fontFamily: "oxygen",
-    marginBottom: 20
+    fontFamily: "oxygen"
   },
   buttonView: {
-    //this is view for button only to prevent breacking the main view when keyboard pop
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    alignContent: "center",
-    marginBottom: 150
+    alignContent: "center"
   },
   image: {
     flex: 1,
-    position: "relative",
-    width: "100%",
-    height: "100%",
     justifyContent: "flex-end"
   }
 });

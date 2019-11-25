@@ -63,13 +63,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
     fontFamily: "oxygen"
-    // paddingBottom: height * 0.2
   },
   line: {
     color: colors.default.buttonWhite,
     justifyContent: "center",
     textAlign: "center",
-    fontSize: 24,
+    fontSize: 20,
     marginVertical: 30,
     fontFamily: "oxygen"
   },
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
     color: colors.default.buttonWhite,
     fontFamily: "oxygen",
     justifyContent: "center"
-    // marginBottom: 130
   },
   header: {
     flex: 3,

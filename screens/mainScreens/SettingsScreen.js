@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, StyleSheet, Button, Text } from "react-native";
 import * as firebase from "firebase";
 
-export default class Settings extends React.Component {
+export default class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -2,18 +2,20 @@ import { createAppContainer } from "react-navigation";
 import Home from "../screens/mainScreens/HomeScreen";
 import Explore from "../screens/mainScreens/ExploreScreen";
 import Travel from "../screens/mainScreens/TravelScreen";
+import Profile from "../screens/mainScreens/SettingsScreen";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import * as colors from "../constants/Colors";
 const MainTopNavigaion = createMaterialTopTabNavigator(
   {
     Home: Home,
     Explore: Explore,
-    Travel: Travel
+    Travel: Travel,
+    Profile: Profile
   },
   {
     tabBarOptions: {
       labelStyle: {
-        fontSize: 16,
+        fontSize: 13,
         paddingTop: 40
       },
       tabStyle: {
@@ -32,9 +34,7 @@ const MainTopNavigaion = createMaterialTopTabNavigator(
       },
       indicatorStyle: {
         backgroundColor: "#1a8cc9",
-        top: 75,
-        width: "20%",
-        marginHorizontal: "4%"
+        top: 75
       }
     }
   }

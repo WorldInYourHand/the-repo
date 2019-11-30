@@ -15,6 +15,7 @@ export const InputField = props => {
       placeholder={placeholder}
       placeholderTextColor={colors.default.lightGray}
       secureTextEntry={secureTextEntry}
+      underlineColorAndroid={"transparent"}
     />
   );
 };

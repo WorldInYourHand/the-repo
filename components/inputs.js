@@ -23,13 +23,13 @@ export const InputField = props => {
 const styles = StyleSheet.create({
   input: {
     borderBottomWidth: 1,
-    borderBottomColor: colors.default.lightGray,
+    borderBottomColor: "white",
     width: "75%",
     textAlign: "left",
     alignSelf: "center",
     marginTop: 30,
     paddingLeft: 20,
-    color: colors.default.buttonWhite,
+    color: colors.default.lightBlue,
     fontSize: 20
   }
 });

@@ -18,7 +18,7 @@ export default class LoginWithSocial extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("../../assets/images/photo_blurred.png")}
+        source={require("../../assets/images/home_screen.png")}
         style={styles.login}
       >
         <View style={styles.header}>
@@ -60,6 +60,7 @@ export default class LoginWithSocial extends React.Component {
 const styles = StyleSheet.create({
   login: {
     flex: 1,
+    resizeMode: "contain",
     alignItems: "center",
     justifyContent: "flex-end",
     fontFamily: "oxygen"

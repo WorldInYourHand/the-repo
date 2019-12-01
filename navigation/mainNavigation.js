@@ -2,7 +2,7 @@ import { createAppContainer } from "react-navigation";
 import Home from "../screens/mainScreens/HomeScreen";
 import Explore from "../screens/mainScreens/ExploreScreen";
 import Travel from "../screens/mainScreens/TravelScreen";
-import Profile from "../screens/mainScreens/SettingsScreen";
+import Profile from "../screens/mainScreens/ProfileScreen";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import * as colors from "../constants/Colors";
 const MainTopNavigaion = createMaterialTopTabNavigator(

@@ -39,7 +39,14 @@ export default class Register extends React.Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(
-        () => {},
+        () => {
+          firebase
+            .database()
+            .ref("users/1")
+            .set({
+              userName: this.state.username
+            });
+        },
         error => {
           Alert.alert(error.message);
         }
@@ -55,7 +62,7 @@ export default class Register extends React.Component {
 
     return (
       <ImageBackground
-        source={require("../../assets/images/photo_blurred.png")}
+        source={require("../../assets/images/home_screen.png")}
         style={styles.image}
       >
         <KeyboardAvoidingView
@@ -135,6 +142,7 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
+    resizeMode: "contain",
     justifyContent: "flex-end"
   }
 });

@@ -1,6 +1,9 @@
 import React from "react";
-import { ScrollView, StyleSheet, Button, Text } from "react-native";
+import { ScrollView, StyleSheet, Button, Text, View } from "react-native";
 import * as firebase from "firebase";
+import MapView from 'react-native-maps';
+import * as Permissions from 'expo-permissions';
+import * as Location from 'expo-location';
 
 export default class Travel extends React.Component {
   constructor(props) {
@@ -8,8 +11,31 @@ export default class Travel extends React.Component {
     this.state = {
       currentPassword: "",
       newPassword: "",
-      newEmail: ""
+      newEmail: "",
+      latitude: null,
+      longitude: null,
+      errorMessage: null,
+      location: {},
     };
+  }
+
+  componentWillMount() {
+    this._getLocation();
+  }
+
+  _getLocation = async () => {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission not granted..'
+      })
+    }
+    const userLocation = await Location.getCurrentPositionAsync();
+    
+    this.setState({
+      location: userLocation
+    })
   }
 
   // Occurs when signout is pressed...
@@ -18,18 +44,19 @@ export default class Travel extends React.Component {
   };
 
   render() {
+    const latitude = 42.6473941;
+    const longitude = 23.4082251;
     return (
-      <ScrollView
-        style={{
-          flex: 1,
-          flexDirection: "column",
-          paddingVertical: 50,
-          paddingHorizontal: 10
-        }}
+      <MapView
+      style = {styles.map}
+      initialRegion={{
+        latitude,
+        longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
+      }}
       >
-        <Text>TRAVEL SCREEN</Text>
-        <Text>logged as {firebase.auth().currentUser.email}</Text>
-      </ScrollView>
+      </MapView>
     );
   }
 }
@@ -49,5 +76,8 @@ const styles = StyleSheet.create({
     height: 40,
     alignSelf: "stretch",
     fontSize: 18
+  },
+  map: {
+    flex: 1,
   }
 });

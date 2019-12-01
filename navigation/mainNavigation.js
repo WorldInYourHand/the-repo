@@ -16,11 +16,11 @@ const MainTopNavigaion = createMaterialTopTabNavigator(
     tabBarOptions: {
       labelStyle: {
         fontSize: 13,
-        paddingTop: 40
+        paddingTop: 40,
       },
       tabStyle: {
         height: 80,
-        paddingBottom: 20
+        paddingBottom: 20,
       },
       activeTintColor: colors.default.blue,
       inactiveTintColor: colors.default.lightGray,
@@ -33,8 +33,11 @@ const MainTopNavigaion = createMaterialTopTabNavigator(
         width: "100%"
       },
       indicatorStyle: {
+        marginTop: 10,
         backgroundColor: "#1a8cc9",
-        top: 75
+        top: 75,
+        marginHorizontal: "4%",
+        width: 40
       }
     }
   }

@@ -23,11 +23,12 @@ export default class Profile extends React.Component {
         style={{
           flex: 1,
           flexDirection: "column",
-          paddingVertical: 50,
+          paddingVertical: 85,
           paddingHorizontal: 10
         }}
       >
-        <Button title="Sign out" onPress={this.onSignoutPress} />
+        {/* <Button title="Sign out" onPress={this.onSignoutPress} /> */}
+        <Text>Profile Screen</Text> 
         <Text>Logged as {firebase.auth().currentUser.email}</Text>
         <Text>{firebase.auth().currentUser.uid}</Text>
       </ScrollView>

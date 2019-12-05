@@ -12,14 +12,18 @@ export default class ProfileInfo extends React.Component {
     };
   }
 
-  loadName() {
+  getUser = () => {
     firebase
       .database()
-      .ref("users")
-      .on("value", data => {
-        console.log(data.toJSON());
+      .ref("/usersList/" + firebase.auth().currentUser.uid)
+      .once("value", snapshot => {
+        if (snapshot.exists()) {
+          this.setState({ username: snapshot.val().userName });
+        } else {
+          console.log("nab");
+        }
       });
-  }
+  };
 
   render() {
     return (
@@ -31,8 +35,8 @@ export default class ProfileInfo extends React.Component {
           alignItems: "center"
         }}
       >
-        <Text>Profile Info</Text>
-        <BigButton title="view info" onPress={this.loadName} />
+        <Text>{this.state.username}</Text>
+        <BigButton title="getUser" onPress={this.getUser} />
         <BigButton
           title="Change Email"
           onPress={() => this.props.navigation.navigate("ChangeEmail")}

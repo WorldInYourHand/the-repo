@@ -42,9 +42,10 @@ export default class Register extends React.Component {
         () => {
           firebase
             .database()
-            .ref("users/1")
+            .ref("usersList/" + firebase.auth().currentUser.uid)
             .set({
-              userName: this.state.username
+              userName: this.state.username,
+              userEmail: this.state.email
             });
         },
         error => {

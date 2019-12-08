@@ -63,14 +63,14 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           {Platform.OS === "ios" && <StatusBar barStyle="default" />}
           {this.state.isAuthenticated ? (
             <MainTabNavigator />
           ) : (
             <AuthNavigator />
           )}
-        </View>
+        </SafeAreaView>
       );
     }
   }

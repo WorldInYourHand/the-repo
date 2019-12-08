@@ -7,23 +7,18 @@ export default class ProfileInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      profilePicture: ""
+      userName: firebase
+        .database()
+        .ref("/usersList/" + firebase.auth().currentUser.uid)
+        .on("value", snapshot => {
+          if (snapshot.exists()) {
+            this.setState({ userName: snapshot.val().userName });
+          } else {
+            this.setState({ userName: "Unnamed" });
+          }
+        })
     };
   }
-
-  getUser = () => {
-    firebase
-      .database()
-      .ref("/usersList/" + firebase.auth().currentUser.uid)
-      .once("value", snapshot => {
-        if (snapshot.exists()) {
-          this.setState({ username: snapshot.val().userName });
-        } else {
-          console.log("nab");
-        }
-      });
-  };
 
   render() {
     return (
@@ -35,8 +30,7 @@ export default class ProfileInfo extends React.Component {
           alignItems: "center"
         }}
       >
-        <Text>{this.state.username}</Text>
-        <BigButton title="getUser" onPress={this.getUser} />
+        <Text>{this.state.userName}</Text>
         <BigButton
           title="Change Email"
           onPress={() => this.props.navigation.navigate("ChangeEmail")}

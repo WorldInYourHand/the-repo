@@ -34,6 +34,10 @@ export default class Register extends React.Component {
       Alert.alert("Passwords do not match");
       return;
     }
+    if (this.state.username === "") {
+      Alert.alert("You need an username");
+      return;
+    }
 
     firebase
       .auth()

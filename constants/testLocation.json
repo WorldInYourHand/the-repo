@@ -1,0 +1,11 @@
+[
+    {
+        "name": "Tsarigradsko",
+        "address": "Druzhba 2",
+        "coords": {
+            "latitude": 42.645635,
+            "longitude": 23.401237
+        },
+        "image_url": "https://mapio.net/images-p/42284885.jpg"
+    }
+]

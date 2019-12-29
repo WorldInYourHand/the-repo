@@ -35,7 +35,6 @@ export default class TravelScreen extends React.Component {
       desLatitude: sampleLocation.coords.latitude,
       desLongitude: sampleLocation.coords.longitude
     }, this.mergeCoords);
-
   }
 
 
@@ -59,7 +58,7 @@ export default class TravelScreen extends React.Component {
  async getDirections(startLoc, desLoc) {
     try {
       //make a request to google's api 
-      const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&key=`);
+      const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&key=AIzaSyDhwl_qaDcld4XVhetdWbDYfLVyJ_EOb4w`);
       //parse the request
       const respJson = await resp.json();
       console.log(respJson);
@@ -94,7 +93,7 @@ export default class TravelScreen extends React.Component {
         >
           <MapView.Polyline 
           strokeWidth={2}
-          strokeColor="red"
+          strokeColor="blue"
           coordinates={coords}
           />
    

@@ -1,11 +1,289 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View, Image } from 'react-native';
 import MapView from 'react-native-maps';
 import * as Permissions from 'expo-permissions';
 import Polyline from '@mapbox/polyline';
 
-const locations = require('../../constants/testLocation.json');
+import Marker from 'react-native-maps';
 
+const locations = require('../../constants/testLocation.json');
+const { width, height } = Dimensions.get('screen');
+
+const customMapStyles = [
+  {
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.country",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "saturation": 35
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
+      }
+    ]
+  },
+  {
+    "featureType": "landscape.natural.landcover",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "saturation": 5
+      }
+    ]
+  },
+  {
+    "featureType": "landscape.natural.terrain",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "saturation": 10
+      },
+      {
+        "lightness": -5
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.attraction",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "saturation": 5
+      },
+      {
+        "lightness": 5
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "visibility": "on"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#dadada"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "saturation": -5
+      },
+      {
+        "lightness": -5
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "lightness": -5
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#c9c9c9"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "lightness": 5
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  }
+]
 
 export default class TravelScreen extends React.Component {
   constructor() {
@@ -24,8 +302,12 @@ export default class TravelScreen extends React.Component {
     if (status !== 'granted') {
       const response = await Permissions.askAsync(Permissions.LOCATION);
     }
+    // previously we called here in the setState, mergeCoords
+    // and also on the lower setState, because this helped us to
+    // start the view with an initially drawn polyline between
+    // coordinates
     navigator.geolocation.getCurrentPosition(
-      ({ coords: { latitude, longitude } }) => this.setState({latitude,longitude}, this.mergeCoords),
+      ({ coords: { latitude, longitude } }) => this.setState({latitude,longitude}),
       (error) => console.log('Error:', error)
     )
 
@@ -34,7 +316,7 @@ export default class TravelScreen extends React.Component {
     this.setState({
       desLatitude: sampleLocation.coords.latitude,
       desLongitude: sampleLocation.coords.longitude
-    }, this.mergeCoords);
+    });
   }
 
 
@@ -61,7 +343,15 @@ export default class TravelScreen extends React.Component {
       const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&key=AIzaSyDhwl_qaDcld4XVhetdWbDYfLVyJ_EOb4w`);
       //parse the request
       const respJson = await resp.json();
-      console.log(respJson);
+     // console.log(respJson);
+
+     //get the response from which we are going to extract
+     //the time and distance between routes
+     const response = respJson.routes[0];
+     const distanceTime = response.legs[0];
+     const distance = distanceTime.distance.text;
+     const time = distanceTime.duration.text;
+
       const points = Polyline.decode(respJson.routes[0].overview_polyline.points);
       const coords = points.map(point => {
         return {
@@ -69,21 +359,68 @@ export default class TravelScreen extends React.Component {
           longitude: point[1]
         }
       })
-      this.setState({ coords })
+      //after we have gathered all the data, we set the state
+      //for the coordinates and distance and time
+      this.setState({ coords, distance, time })
     } catch(error) {
       console.log('Error from getting directions..', respJson.routes[0]);
     }
   }
 
+  onMarkerPress = location => () => {
+    // when the user presses on the marker, we update the route to the marker
+    //this is so, because if we have multiple markers (because there are multiple
+    //meaningfull locations around the user, then the trace between the locations
+    //should update, based on which marker the user clicked on)
+    const { coords: { latitude, longitude } } = location;
+    this.setState({
+      destination: location,
+      desLatitude: latitude,
+      desLongitude: longitude,
+    }, this.mergeCoords);
+  }
+
+  renderMarkers = () => {
+    const { locations } = this.state;
+    return (
+      <View>
+        {
+          locations.map((location, idx) => {
+            const {
+              coords: { latitude, longitude }
+            } = location; 
+            return (
+              <MapView.Marker 
+              key={idx}
+              coordinate={{ latitude, longitude }}
+              onPress={this.onMarkerPress(location)}
+              />
+            )
+          })
+        }
+      </View>
+    )
+  }
+
   render() {
-    const { latitude, longitude, coords } = this.state;
+    const { 
+      latitude,
+      longitude, 
+      coords, 
+      destination,
+      time,
+      distance 
+    } = this.state;
 
-
-    if (latitude) {
+    // this is the view where we draw the polyline between 
+    // the destination and us, if we have a destination
+    if (latitude && coords) {
       return (
+        <View>
         <MapView
         showsUserLocation
-        style = {{ flex: 1}}
+        style = { styles.map }
+        customMapStyle = { customMapStyles }
         initialRegion={{
           latitude,
           longitude,
@@ -91,14 +428,60 @@ export default class TravelScreen extends React.Component {
           longitudeDelta: 0.0421
         }}
         >
+          
+          {this.renderMarkers()}
           <MapView.Polyline 
           strokeWidth={2}
           strokeColor="blue"
           coordinates={coords}
           />
-   
+
         </MapView>
+        <View
+          style={{
+            position: 'absolute',
+            width,
+            paddingTop: 20,
+            alignSelf: 'center',
+            alignItems: 'center',
+            height: height * 0.18,
+            backgroundColor: 'white',
+            justifyContent: 'flex-end',
+           }}
+          >
+            <Text style = {{ fontWeight: 'bold' }}>
+              Estimated Arrival Time: {time}
+            </Text>
+            <Text style = {{ fontWeight: 'bold' }}>
+              Estimated Distance: {distance}
+            </Text>
+          </View>
+
+        </View>
        );
+    }
+    // this is the view that we draw if we only have our
+    // coordinates and not the destination ones
+     else if (latitude && longitude || coords == 'undefined') {
+      return (
+        <View>
+        <MapView
+        showsUserLocation
+        style = { styles.map }
+        customMapStyle = { customMapStyles }
+        initialRegion={{
+          latitude,
+          longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+        }}
+        >
+          {this.renderMarkers()}
+
+        </MapView>
+        </View>
+       );
+
     }
 
     //this return here actually represents the loading screen
@@ -122,4 +505,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 85,
   },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    height: height,
+    width: width,
+  }
 });

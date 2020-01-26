@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { BigButton, SocialButton, LinkButton } from "../../components/buttons";
+import * as colors from "../../constants/Colors";
 
 export default class LoginWithSocial extends React.Component {
   constructor(props) {
@@ -20,7 +21,9 @@ export default class LoginWithSocial extends React.Component {
         source={require("../../assets/images/photo_blurred.png")}
         style={styles.login}
       >
-        <Text style={styles.line}>Sign in with</Text>
+        <View style={styles.header}>
+          <Text style={styles.line}>Sign in with</Text>
+        </View>
         <View style={styles.rowView}>
           <SocialButton
             source={require("../../assets/images/fb_button.png")}
@@ -36,15 +39,19 @@ export default class LoginWithSocial extends React.Component {
           />
         </View>
         <Text style={styles.line}>or</Text>
-        <BigButton
-          title="LOGIN"
-          onPress={() => this.props.navigation.navigate("LoginWithAcc")}
-        />
-        <LinkButton
-          title="create an account >"
-          style={styles.linkButton}
-          onPress={this.onRegisterPress}
-        />
+        <View style={styles.bottom}>
+          <BigButton
+            title="LOGIN"
+            onPress={() => this.props.navigation.navigate("LoginWithAcc")}
+          />
+        </View>
+        <View style={styles.last}>
+          <LinkButton
+            title="create an account >"
+            style={styles.linkButton}
+            onPress={this.onRegisterPress}
+          />
+        </View>
       </ImageBackground>
     );
   }
@@ -55,26 +62,42 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-end",
-    fontFamily: "oxygen",
-    paddingBottom: 150
+    fontFamily: "oxygen"
   },
   line: {
-    color: "white",
+    color: colors.default.buttonWhite,
     justifyContent: "center",
     textAlign: "center",
-    fontSize: 24,
+    fontSize: 20,
     marginVertical: 30,
     fontFamily: "oxygen"
   },
   rowView: {
+    flex: 1,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center"
   },
   linkButton: {
     backgroundColor: "transparent",
     borderWidth: 0,
-    color: "white",
+    color: colors.default.buttonWhite,
     fontFamily: "oxygen",
-    marginBottom: 130
+    justifyContent: "center"
+  },
+  header: {
+    flex: 3,
+    justifyContent: "flex-end"
+  },
+  bottom: {
+    justifyContent: "flex-start",
+    alignContent: "center",
+    flexDirection: "column",
+    width: "100%",
+    alignItems: "center"
+  },
+  last: {
+    flex: 1,
+    justifyContent: "flex-start"
   }
 });

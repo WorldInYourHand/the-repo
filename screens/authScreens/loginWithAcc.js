@@ -11,6 +11,7 @@ import {
 import { BigButton, LinkButton, BackButton } from "../../components/buttons";
 import { InputField } from "../../components/inputs";
 import * as firebase from "firebase";
+import * as colors from "../../constants/Colors";
 
 export default class LoginWithAcc extends React.Component {
   constructor(props) {
@@ -52,10 +53,10 @@ export default class LoginWithAcc extends React.Component {
         <KeyboardAvoidingView
           behavior="position"
           keyboardVerticalOffset={keyboardVerticalOffset}
-          style={{ flex: 1, justifyContent: "flex-end" }}
+          style={{ flex: 3, justifyContent: "flex-end" }}
         >
+          <Text style={styles.newAccount}>Sign In</Text>
           <View style={styles.inputContainer}>
-            <Text style={styles.newAccount}>Sign In</Text>
             <InputField
               value={this.state.email}
               onChangeText={text => {
@@ -73,10 +74,10 @@ export default class LoginWithAcc extends React.Component {
               secureTextEntry={true}
               style={{ marginBottom: 20 }}
             />
-            <BigButton title="Sign In" onPress={this.onLoginPress} />
           </View>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
+          <BigButton title="Sign In" onPress={this.onLoginPress} />
           <LinkButton
             title="Forgoten password?"
             onPress={this.onForgotPassPress}
@@ -94,36 +95,23 @@ export default class LoginWithAcc extends React.Component {
 const styles = StyleSheet.create({
   screenView: {
     flex: 1,
-    position: "relative",
-    width: "100%",
-    height: "100%",
     justifyContent: "flex-end"
   },
-  input: {
-    borderBottomWidth: 1,
-    borderBottomColor: "white",
-    width: "70%",
-    textAlign: "left",
-    marginTop: 30,
-    paddingLeft: 20,
-    color: "white",
-    //Should check how to calculate font size based on phone !!
-    fontSize: 20
-  },
   inputContainer: {
-    justifyContent: "flex-end",
+    justifyContent: "space-around",
     alignItems: "center"
   },
   newAccount: {
     fontSize: 24,
-    color: "white",
+    alignSelf: "center",
+    color: colors.default.buttonWhite,
     alignContent: "center",
-    fontFamily: "oxygen",
-    marginBottom: 20
+    fontFamily: "oxygen"
   },
   buttonView: {
+    flex: 1,
+    justifyContent: "flex-start",
     alignItems: "center",
-    alignContent: "center",
-    marginBottom: 150
+    alignContent: "center"
   }
 });

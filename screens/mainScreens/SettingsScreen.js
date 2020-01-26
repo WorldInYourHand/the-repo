@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, StyleSheet, Button, Text } from "react-native";
 import * as firebase from "firebase";
 
-export default class Settings extends React.Component {
+export default class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,11 +23,12 @@ export default class Settings extends React.Component {
         style={{
           flex: 1,
           flexDirection: "column",
-          paddingVertical: 50,
+          paddingVertical: 85,
           paddingHorizontal: 10
         }}
       >
-        <Button title="Sign out" onPress={this.onSignoutPress} />
+        {/* <Button title="Sign out" onPress={this.onSignoutPress} /> */}
+        <Text>Profile Screen</Text> 
         <Text>Logged as {firebase.auth().currentUser.email}</Text>
         <Text>{firebase.auth().currentUser.uid}</Text>
       </ScrollView>

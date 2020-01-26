@@ -12,6 +12,7 @@ import {
 import { InputField } from "../../components/inputs";
 import { BigButton, LinkButton, BackButton } from "../../components/buttons";
 import * as firebase from "firebase";
+import * as colors from "../../constants/Colors";
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -55,18 +56,12 @@ export default class Register extends React.Component {
     return (
       <ImageBackground
         source={require("../../assets/images/photo_blurred.png")}
-        style={{
-          flex: 1,
-          position: "relative",
-          width: "100%",
-          height: "100%",
-          justifyContent: "flex-end"
-        }}
+        style={styles.image}
       >
         <KeyboardAvoidingView
           behavior="position"
           keyboardVerticalOffset={keyboardVerticalOffset}
-          style={{ flex: 1, justifyContent: "flex-end" }}
+          style={styles.keyboardAvoidingViewStyle}
         >
           <SafeAreaView style={styles.inputContainer}>
             <Text style={styles.newAccount}>New Account</Text>
@@ -103,10 +98,10 @@ export default class Register extends React.Component {
               secureTextEntry={true}
               style={{ marginBottom: 20 }}
             />
-            <BigButton title="Sign Up" onPress={this.onSignUpPress} />
           </SafeAreaView>
         </KeyboardAvoidingView>
         <View style={styles.buttonView}>
+          <BigButton title="Sign Up" onPress={this.onSignUpPress} />
           <LinkButton
             title="I have an account"
             onPress={this.onReturnToLoginPress}
@@ -128,15 +123,22 @@ const styles = StyleSheet.create({
   },
   newAccount: {
     fontSize: 24,
-    color: "white",
+    color: colors.default.buttonWhite,
     alignContent: "center",
-    fontFamily: "oxygen",
-    marginBottom: 20
+    fontFamily: "oxygen"
   },
   buttonView: {
-    //this is view for button only to prevent breacking the main view when keyboard pop
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    alignContent: "center",
-    marginBottom: 150
+    alignContent: "center"
+  },
+  image: {
+    flex: 1,
+    justifyContent: "flex-end"
+  },
+  keyboardAvoidingViewStyle: {
+    flex: 3, 
+    justifyContent: "flex-end"
   }
 });

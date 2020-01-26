@@ -1,5 +1,6 @@
 import * as React from "react";
 import { TextInput, StyleSheet } from "react-native";
+import * as colors from "../constants/Colors";
 
 export const InputField = props => {
   const { style = {}, placeholder, secureTextEntry, onChangeText } = props;
@@ -12,7 +13,9 @@ export const InputField = props => {
       style={[styles.input, style]}
       maxLength={40}
       placeholder={placeholder}
+      placeholderTextColor={colors.default.lightGray}
       secureTextEntry={secureTextEntry}
+      underlineColorAndroid={"transparent"}
     />
   );
 };
@@ -20,15 +23,13 @@ export const InputField = props => {
 const styles = StyleSheet.create({
   input: {
     borderBottomWidth: 1,
-    borderBottomColor: "white",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 2,
+    borderBottomColor: colors.default.lightGray,
     width: "75%",
     textAlign: "left",
     alignSelf: "center",
     marginTop: 30,
     paddingLeft: 20,
-    color: "white",
+    color: colors.default.buttonWhite,
     fontSize: 20
   }
 });

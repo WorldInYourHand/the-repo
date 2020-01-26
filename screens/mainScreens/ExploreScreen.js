@@ -21,12 +21,7 @@ export default class Explore extends React.Component {
   render() {
     return (
       <ScrollView
-      style={{
-        flex: 1,
-        flexDirection: "column",
-        paddingVertical: 85,
-        paddingHorizontal: 10
-      }}
+      style={styles.scrollViewStyle}
     >
       {/* <Button title="Sign out" onPress={this.onSignoutPress} /> */}
       <Text>Explore Screen</Text> 
@@ -52,5 +47,11 @@ textInput: {
   height: 40,
   alignSelf: "stretch",
   fontSize: 18
+},
+scrollViewStyle: {
+  flex: 1,
+  flexDirection: "column",
+  paddingVertical: 85,
+  paddingHorizontal: 10
 }
 });

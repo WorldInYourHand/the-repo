@@ -61,7 +61,7 @@ export default class Register extends React.Component {
         <KeyboardAvoidingView
           behavior="position"
           keyboardVerticalOffset={keyboardVerticalOffset}
-          style={{ flex: 3, justifyContent: "flex-end" }}
+          style={styles.keyboardAvoidingViewStyle}
         >
           <SafeAreaView style={styles.inputContainer}>
             <Text style={styles.newAccount}>New Account</Text>
@@ -135,6 +135,10 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
+    justifyContent: "flex-end"
+  },
+  keyboardAvoidingViewStyle: {
+    flex: 3, 
     justifyContent: "flex-end"
   }
 });

@@ -68,7 +68,7 @@ export default class App extends React.Component {
           {this.state.isAuthenticated ? (
             <MainTabNavigator />
           ) : (
-            <AuthNavigator />
+              <AuthNavigator />
           )}
         </SafeAreaView>
       );

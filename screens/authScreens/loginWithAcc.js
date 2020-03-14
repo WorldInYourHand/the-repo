@@ -47,7 +47,7 @@ export default class LoginWithAcc extends React.Component {
     const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
     return (
       <ImageBackground
-        source={require("../../assets/images/photo_blurred.png")}
+        source={require("../../assets/images/home_screen.png")}
         style={styles.screenView}
       >
         <KeyboardAvoidingView
@@ -95,6 +95,7 @@ export default class LoginWithAcc extends React.Component {
 const styles = StyleSheet.create({
   screenView: {
     flex: 1,
+    resizeMode: "contain",
     justifyContent: "flex-end"
   },
   inputContainer: {

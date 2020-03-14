@@ -28,7 +28,7 @@ export default class Profile extends React.Component {
         }}
       >
         {/* <Button title="Sign out" onPress={this.onSignoutPress} /> */}
-        <Text>Profile Screen</Text> 
+        <Text>Profile Screen</Text>
         <Text>Logged as {firebase.auth().currentUser.email}</Text>
         <Text>{firebase.auth().currentUser.uid}</Text>
       </ScrollView>

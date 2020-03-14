@@ -34,12 +34,24 @@ export default class Register extends React.Component {
       Alert.alert("Passwords do not match");
       return;
     }
+    if (this.state.username === "") {
+      Alert.alert("You need an username");
+      return;
+    }
 
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(
-        () => {},
+        () => {
+          firebase
+            .database()
+            .ref("usersList/" + firebase.auth().currentUser.uid)
+            .set({
+              userName: this.state.username,
+              userEmail: this.state.email
+            });
+        },
         error => {
           Alert.alert(error.message);
         }
@@ -55,7 +67,7 @@ export default class Register extends React.Component {
 
     return (
       <ImageBackground
-        source={require("../../assets/images/photo_blurred.png")}
+        source={require("../../assets/images/home_screen.png")}
         style={styles.image}
       >
         <KeyboardAvoidingView
@@ -135,6 +147,7 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
+    resizeMode: "contain",
     justifyContent: "flex-end"
   },
   keyboardAvoidingViewStyle: {

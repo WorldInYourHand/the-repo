@@ -9,7 +9,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
     "splash": {
-      "image": "./assets/images/welcomeScreen.png",
+      "image": "./assets/images/home_screen.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },

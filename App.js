@@ -18,7 +18,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       isLoadingComplete: false,
-      isAuthenticationLoaded: true,
+      isAuthenticationLoaded: false,
       isAuthenticated: false
     };
 
@@ -34,7 +34,7 @@ export default class App extends React.Component {
 
   loadResourcesAsync = async () => {
     return Promise.all([
-      // Asset.loadAsync([require("./assets/images/welcomeScreen.png")]),
+      // Asset.loadAsync([require("./assets/images/home_screen.png")]),
       Font.loadAsync({
         oxygen: require("./assets/fonts/Oxygen-Regular.ttf")
       })
@@ -63,14 +63,14 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           {Platform.OS === "ios" && <StatusBar barStyle="default" />}
           {this.state.isAuthenticated ? (
             <MainTabNavigator />
           ) : (
               <AuthNavigator />
           )}
-        </View>
+        </SafeAreaView>
       );
     }
   }

@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.default.buttonWhite
   },
   text: {
-    fontSize: 16,
+    fontSize: 15,
     textTransform: "uppercase",
     color: colors.default.darkGray
   },
@@ -71,13 +71,13 @@ const styles = StyleSheet.create({
   },
   linkButton: {
     color: colors.default.lightGray,
-    fontSize: 20
+    fontSize: 18
   },
   cofirmButton: {
     backgroundColor: colors.default.blue,
     alignItems: "center",
     color: colors.default.buttonWhite,
-    fontSize: 20
+    fontSize: 15
   },
   backButton: {
     width: 40,

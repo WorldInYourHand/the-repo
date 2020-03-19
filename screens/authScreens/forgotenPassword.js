@@ -43,7 +43,7 @@ export default class ForgotenPassword extends React.Component {
 
     return (
       <ImageBackground
-        source={require("../../assets/images/photo_blurred.png")}
+        source={require("../../assets/images/home_screen.png")}
         style={styles.imageContainer}
       >
         <KeyboardAvoidingView
@@ -77,6 +77,7 @@ export default class ForgotenPassword extends React.Component {
 
 const styles = StyleSheet.create({
   imageContainer: {
+    resizeMode: "contain",
     flex: 1,
     justifyContent: "flex-end"
   },

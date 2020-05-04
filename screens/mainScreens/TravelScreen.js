@@ -1,10 +1,11 @@
 import React from 'react';
-import { Dimensions, StyleSheet, Text, View, Image } from 'react-native';
+import { Dimensions, StyleSheet, Text, View, KeyboardAvoidingView, Platform } from 'react-native';
 import MapView from 'react-native-maps';
 import * as Permissions from 'expo-permissions';
 import Polyline from '@mapbox/polyline';
-
 import Marker from 'react-native-maps';
+import TravelScreenNavigation from '../../navigation/travelScreenNavigation';
+import FirstDestinations from '../travelScreens/FirstDestinations';
 
 const locations = require('../../constants/testLocation.json');
 const { width, height } = Dimensions.get('screen');
@@ -12,8 +13,8 @@ const { width, height } = Dimensions.get('screen');
 const customMapStyles = require('../../constants/mapStyle.json');
 
 export default class TravelScreen extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       latitude: null,
@@ -93,6 +94,34 @@ export default class TravelScreen extends React.Component {
     }
   }
 
+    onMapPress = (e, data) => {
+      if (e && e.nativeEvent && e.nativeEvent.coordinate) {
+       const location = e.nativeEvent.coordinate;
+
+       locationObj = [{
+        "coords": {
+          "latitude": location.latitude,
+          "longitude": location.longitude
+        }}
+      ]
+
+      this.setState({
+        locations: locationObj
+      })
+    } else if (data && data.geometry) {
+      locationObj = [{
+        "coords": {
+          "latitude": data.geometry.location.lat,
+          "longitude": data.geometry.location.lng
+        }}
+      ]
+
+      this.setState({
+        locations: locationObj
+      })
+    }
+  }
+
   onMarkerPress = location => () => {
     // when the user presses on the marker, we update the route to the marker
     //this is so, because if we have multiple markers (because there are multiple
@@ -108,6 +137,7 @@ export default class TravelScreen extends React.Component {
 
   renderMarkers = () => {
     const { locations } = this.state;
+    console.log(this.state);
     return (
       <View>
         {
@@ -153,6 +183,7 @@ export default class TravelScreen extends React.Component {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421
         }}
+        onPress={e => this.onMapPress(e)}
         >
           
           {this.renderMarkers()}
@@ -180,6 +211,7 @@ export default class TravelScreen extends React.Component {
     // this is the view that we draw if we only have our
     // coordinates and not the destination ones
      else if (latitude && longitude || coords == 'undefined') {
+      const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
       return (
         <View>
         <MapView
@@ -192,10 +224,23 @@ export default class TravelScreen extends React.Component {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421
         }}
+        onPress={e => this.onMapPress(e)}
         >
           {this.renderMarkers()}
 
         </MapView>
+        <View style={styles.bottomNavigationView}>
+        <KeyboardAvoidingView
+          behavior="position"
+          keyboardVerticalOffset={keyboardVerticalOffset}
+          style={{ flex: 3, justifyContent: "flex-end" }}
+        >
+        <FirstDestinations style={{flex: 1}}
+            onRef={ref => (this.parentReference = ref)}
+            parentReference = {this.onMapPress.bind(null, this)}
+        />
+        </KeyboardAvoidingView>
+        </View>
         </View>
        );
 
@@ -225,8 +270,8 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
     flex: 1,
-    height: height,
-    width: width,
+    height: height / 2,
+    width: width
   },
   mapWithEstimatedTime: {
     position: 'absolute',
@@ -242,5 +287,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center', 
     alignItems: 'center'
+  },
+  bottomNavigationView: {
+    position: 'absolute',
+    width,
+    height: height / 2 + 10,
+    marginTop: height / 2 - 10,
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderTopEndRadius: 20,
+    borderTopLeftRadius: 20,
+    backgroundColor: 'gray'
   }
 });
